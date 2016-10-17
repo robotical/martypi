@@ -1,0 +1,21 @@
+hello marty
+marty dance
+marty dance like no one's watching
+how are you today?
+walk forwards
+walk backwards
+one step
+two steps
+three steps
+four steps
+five steps
+turn left
+turn right
+raise your left arm
+raise your right arm
+lower your left arm
+lower your right arm
+open your gripper
+close your gripper
+kick left foot
+kick right foot

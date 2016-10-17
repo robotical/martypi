@@ -1,0 +1,32 @@
+#JSGF V1.0;
+grammar commands;
+
+<numSteps> = ONE STEP |
+	TWO STEPS |
+	THREE STEPS |
+	FOUR STEPS |
+	FIVE STEPS;
+
+<directionSagittal> = FORWARDS |
+	BACKWARDS;
+
+<directionCoronal> = LEFT |
+	RIGHT;
+
+<action> = WALK <directionSagittal> |
+	WALK <directionSagittal> <numSteps> |
+	TURN <directionCoronal> |
+	TURN <directionCoronal> <numSteps> |
+	KICK <directionCoronal> FOOT |
+	RAISE <directionCoronal> ARM |
+	RAISE YOUR <directionCoronal> ARM |
+	CLOSE YOUR GRIPPER |
+	OPEN YOUR GRIPPER |
+	DANCE |
+	DANCE LIKE NO ONE'S WATCHING;	
+
+
+public <command> = <action> |
+		MARTY <action> |
+		<action> MARTY |
+		HELLO MARTY;

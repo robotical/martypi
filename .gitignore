@@ -1,0 +1,39 @@
+# extensionless files
+*
+!/**/
+!*.*
+#!makefile
+
+# calibration file - this will be different for each robot
+#*martyJointCalib.h
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Compiled Python Files
+*.pyc
+
+# Text Editor backups
+*~
+*.swp
+# OS Generated files
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+
+# bin files
+*.bin
+*.elf
+*/bin/*
+
+*.d
