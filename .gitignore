@@ -2,7 +2,6 @@
 *
 !/**/
 !*.*
-#!makefile
 
 # calibration file - this will be different for each robot
 #*martyJointCalib.h
