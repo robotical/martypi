@@ -38,13 +38,13 @@ enum PWMChannels {
 # define AUXOFFSET 190
 
 // Servo polarity and multiplier
-#define RHIPDIR   -1
+#define RHIPDIR   1
 #define RHIPMULT  1
 
 #define RTWISTDIR   1
 #define RTWISTMULT  1
 
-#define RKNEEDIR  1
+#define RKNEEDIR  -1
 #define RKNEEMULT 1
 
 #define LHIPDIR   1
@@ -53,7 +53,7 @@ enum PWMChannels {
 #define LTWISTDIR   1
 #define LTWISTMULT  1
 
-#define LKNEEDIR  1
+#define LKNEEDIR  -1
 #define LKNEEMULT 1
 
 #define LARMDIR   1
