@@ -26,25 +26,41 @@
 #define DEFAULT_STEPTIME  2.0
 #define DEFAULT_MOVETIME  1.0
 
-// command definitions.
-// would be nicer to have these in a cross-language configuration file
-#define CMD_HELLO 0
-#define CMD_MOVEKNEE  1
-#define CMD_MOVEHIP   2
-#define CMD_LEANSAGITTAL  3
-#define CMD_LEANSIDEWAYS  4
-#define CMD_STEP  5
-#define CMD_WALK  6
-#define CMD_EYES  7
-#define CMD_KICK  8
-#define CMD_MOVEJOINTS  9
-#define CMD_LIFTLEG 10
-#define CMD_LOWERLEG 11
-#define CMD_CELEBRATE 12
-#define CMD_HIPTOBESQUARE 13
-#define CMD_ROLLERSKATE 14
-#define CMD_ARMS 15
-#define CMD_KETTLE 16
+// TODO: Move to cross-language configuration file
+enum Commands {
+  CMD_HELLO = 0,
+  CMD_MOVEKNEE,
+  CMD_MOVEHIP,
+  CMD_LEANSAGITTAL,
+  CMD_LEANSIDEWAYS,
+  CMD_STEP,
+  CMD_WALK,
+  CMD_EYES,
+  CMD_KICK,
+  CMD_MOVEJOINTS,
+  CMD_LIFTLEG,
+  CMD_LOWERLEG,
+  CMD_CELEBRATE,
+  CMD_HIPTOBESQUARE,
+  CMD_ROLLERSKATE,
+  CMD_ARMS
+};
+// #define CMD_HELLO 0
+// #define CMD_MOVEKNEE  1
+// #define CMD_MOVEHIP   2
+// #define CMD_LEANSAGITTAL  3
+// #define CMD_LEANSIDEWAYS  4
+// #define CMD_STEP  5
+// #define CMD_WALK  6
+// #define CMD_EYES  7
+// #define CMD_KICK  8
+// #define CMD_MOVEJOINTS  9
+// #define CMD_LIFTLEG 10
+// #define CMD_LOWERLEG 11
+// #define CMD_CELEBRATE 12
+// #define CMD_HIPTOBESQUARE 13
+// #define CMD_ROLLERSKATE 14
+// #define CMD_ARMS 15
 
 #define CMD_LEFT  0
 #define CMD_RIGHT 1
@@ -227,8 +243,10 @@ int runCommand(martyrobot& robot, vector<uint8_t> data) {
       angle = data[4];
       if (data[3] == CMD_NEGATIVE)
         angle *= -1;
+#ifdef R_EYER
       printf("settinng second eye to %.2f\n", angle);
       robot.setServo(R_EYER, angle);
+#endif
     }
     break;
   }
@@ -269,9 +287,10 @@ int runCommand(martyrobot& robot, vector<uint8_t> data) {
 
   case CMD_LOWERLEG: {
     // This will lower whichever leg is higher to the ground
-    // initial quick implementation just thinks about the knees.
-    // in the future should consider hip angle too, then adjust knee angle only to get foot to floor
-    // this function will never change the sign of the knee angle
+    // Initial implementation just thinks about the knees.
+    // TODO: should consider hip angle too,
+    // then adjust knee angle only to get foot to floor
+    // This function will never change the sign of the knee angle
 
     printf("lower leg command\n");
 
@@ -333,21 +352,7 @@ int runCommand(martyrobot& robot, vector<uint8_t> data) {
     robot.setServo(R_LARM, angle2);
 
 
-    }/*
-    case CMD_KETTLE:{
-      float time = (float)data[1]/10;
-
-      // generate a trajectory to move the knee
-      // first line is the robot's present position
-      tSetpoints.clear();
-      tSetpoints.push_back(tline);      // tline should already have one line, with 0.0 timecode and robot's present angles
-      setPointsKettle(tSetpoints, time);
-
-      interpTrajectory(tSetpoints, tInterp, 0.05);
-      runTrajectory(robot, tInterp);
-      break;
-    }
-    */
+  }
   }
   return 1;
 }

@@ -1,63 +1,57 @@
-import pythonRobotTest as marty
 import time
 import math
+import martyPython as marty
 
-# initialise the robot
-#marty.hello()
-#time.sleep(3.0)
+# Initialise Marty
+# marty.hello()
+# time.sleep(3.0)
 
-marty.walk(2, 50, 0, 16)
-marty.kettle()
+# Example Walk
+NUM_STEPS = 2
+STEP_LENGTH = 50
+TURN = 0      # 0 = Straight, >0 = Right, <0 = Left
+MOVE_TIME = 20
+marty.walk(NUM_STEPS, STEP_LENGTH, TURN, MOVE_TIME)
 
-numsteps = 3
-# --- Write your code
-'''
-for x in range(0,20):
-	marty.eyes(-60)
-	marty.arms(100,200)
-	time.sleep(0.1)
-	marty.eyes(-40)
-	marty.arms(200,100)
-	time.sleep(0.1)
+# TODO: Debug rest of demos when eyes/arms implemented
 
-marty.arms(200,200)
-'''
-'''
-marty.walk(numsteps,50,0,17)
-marty.walk(1,10,0,13)
-marty.arms(200,200)
-time.sleep(numsteps*1.7 + 6.0)
-marty.eyes(-60)
-'''
-#marty.leanForward(50,15)
-#marty.leanForward(0,15)
-#marty.eyes(-80)
+# for x in range(0,20):
+#     marty.eyes(-60)
+#     marty.arms(100,200)
+#     time.sleep(0.1)
+#     marty.eyes(-40)
+#     marty.arms(200,100)
+#     time.sleep(0.1)
+# marty.arms(200,200)
 
-# --- Some code as finished by this point
+# marty.walk(NUM_STEPS,50,0,17)
+# marty.walk(1,10,0,13)
+# marty.arms(200,200)
+# time.sleep(NUM_STEPS*1.7 + 6.0)
+# marty.eyes(-60)
 
-'''
-def step():
-	marty.standStraight()
-	marty.leanRight(60)
-	marty.liftLeftLeg(50)
-	marty.moveLeftLegForward(50)
-	marty.lowerLeg()
-	marty.standStraight()
-	marty.leanLeft(60)
-	marty.liftRightLeg(10)
-	marty.moveRightLegForward(50)
-	marty.lowerLeg()
+# marty.leanForward(50,15)
+# marty.leanForward(0,15)
+# marty.eyes(-80)
 
-for i in range(5):
-	step()
+## Example Step procedure
+# def step():
+#   marty.standStraight()
+#   marty.leanRight(60)
+#   marty.liftLeftLeg(50)
+#   marty.moveLeftLegForward(50)
+#   marty.lowerLeg()
+#   marty.standStraight()
+#   marty.leanLeft(60)
+#   marty.liftRightLeg(10)
+#   marty.moveRightLegForward(50)
+#   marty.lowerLeg()
 
-#marty.walk(20, 50, 0, 12)
-'''
+# for i in range(5):
+#   step()
 
-'''
-marty.kickRight()
-marty.celebrate()
+# marty.kickRight()
+# marty.celebrate()
 
-# get Archie back to a standing position
-marty.standStraight()
-'''
+## Get Marty back to a standing position
+# marty.standStraight()
