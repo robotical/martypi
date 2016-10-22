@@ -4,8 +4,8 @@
 // this function ensures that the original tIn points are explicitly stated in tOut
 // it does not (necessarily) result in a uniform dt in tOut
 
-// TODO: rewrite to use iterators rather than popping. also then don't need to copy tIn
-//     maybe rewrite to produce uniform dt on tOut
+// TODO: Re-Write using iterators rather than popping.
+// Also then don't need to copy tIn, maybe rewrite to produce uniform dt on tOut
 
 bool interpTrajectory(data_t tIn, data_t& tOut, float dt) {
   if (tIn.empty())

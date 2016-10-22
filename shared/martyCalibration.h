@@ -3,10 +3,10 @@
 
 #include "martyJointCalib.h"
 
-// I2C address of servo board
+// I2C address of Servo Board
 #define I2CADDRESS  0x40
 
-// motors - PWM channels servos are attached to
+// PWM channels for Servos
 enum PWMChannels {
   CH_LHIP =   0,
   CH_LTWIST = 1,
@@ -22,13 +22,6 @@ enum PWMChannels {
   CH_AUX3 =   11,
   CH_NUM
 };
-
-// #define CH_EYER   6
-// #define EYERZERO  270
-// #define EYERMAX   310
-// #define EYERMIN   240
-// #define EYERDIR   -1
-// #define EYERMULT  1
 
 # define HIPOFFSET 100
 # define TWISTOFFSET 180
@@ -76,6 +69,5 @@ enum PWMChannels {
 #define EYESANGRY   22
 #define EYESEXCITED -20
 #define EYESWIDE  -50
-
 
 #endif

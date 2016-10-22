@@ -27,6 +27,7 @@ int main() {
 #define DDELTA  17500
   deque<float> setpos(R_NUMJOINTS, 0);
 
+  // Default Arm positions
   robot.setServo(R_EYES, EYESNORMAL);
   sleep(1);
   robot.setServo(R_EYES, EYESANGRY);
@@ -36,41 +37,41 @@ int main() {
   robot.setServo(R_EYES, EYESWIDE);
   sleep(1);
 
-  // test eyes
+  // Test eyes
   for (alpha = 0; alpha < 6.28; alpha += 0.1) {
     robot.setServo(R_EYES, EYESANGRY * sin(alpha));;
     usleep(DDELTA);
   }
 
-  // ARMS SWING TOGETHER
+  // Arms Swing Together
   for (alpha = 0; alpha < 12.56; alpha += 0.1) {
     robot.setServo(R_RARM, 100 * sin(alpha));
     robot.setServo(R_LARM, 100 * sin(alpha));
     usleep(DDELTA);
   }
 
-  // ARMS SWING OPPOSING
+  // Arms Swing Opposed
   for (alpha = 0; alpha < 12.56; alpha += 0.1) {
     robot.setServo(R_RARM, 100 * sin(alpha));
     robot.setServo(R_LARM, -100 * sin(alpha));
     usleep(DDELTA);
   }
 
-  // FORWARD AND BACKWARD
+  // Forward and Backward
   for (alpha = 0; alpha < 12.56; alpha += 0.1) {
     setpos[R_RHIP] = 45 * sin(alpha); setpos[R_LHIP] = setpos[R_RHIP];
     robot.setServos(setpos);
     usleep(DDELTA);
   }
 
-  // SIDE TO SIDE
+  // Side to Side
   for (alpha = 0; alpha < 12.56; alpha += 0.1) {
     setpos[R_RKNEE] = 45 * sin(alpha); setpos[R_LKNEE] = setpos[R_RKNEE];
     robot.setServos(setpos);
     usleep(DDELTA);
   }
 
-  // FEET TWIST - SAME DIRECTIONS
+  // Feet Twist in same direction
   setpos[R_RHIP] = 0; setpos[R_RKNEE] = 0; setpos[R_LHIP] = 0;
   setpos[R_LKNEE] = 0;
   for (alpha = 0; alpha < 12.56; alpha += 0.1) {
@@ -80,22 +81,25 @@ int main() {
     usleep(DDELTA);
   }
 
-  // FEET TWIST - OPPOSING
+  // Feet Twist in opposite direction
   for (alpha = 0; alpha < 12.56; alpha += 0.1) {
     setpos[R_RTWIST] = 20 * sin(alpha); setpos[R_LTWIST] = 0 - setpos[R_RTWIST];
     robot.setServos(setpos);
     usleep(DDELTA);
   }
 
+  // Test Left Leg
   data_t genTraj;
   genTraj = genRaisedFootTwistLeft(robot, 4.0);
   runTrajectory(robot, genTraj);
   genTraj.clear();
 
+  // Test Right Leg
   genTraj = genRaisedFootTwistRight(robot, 4.0);
   runTrajectory(robot, genTraj);
   genTraj.clear();
 
+  // Walk about
   for (int numstep = 0; numstep < 1; numstep++) {
     genTraj = genStepLeft(robot, 0, 25, 1.25, 0);
     runTrajectory(robot, genTraj);
@@ -116,10 +120,12 @@ int main() {
     genTraj.clear();
   }
 
+  // Test a Left Kick
   genTraj = genKickLeft(robot, 2.0);
   runTrajectory(robot, genTraj);
   genTraj.clear();
 
+  // Celebrate!
   genTraj = genCelebration(robot, 4.0);
   runTrajectory(robot, genTraj);
   genTraj.clear();
