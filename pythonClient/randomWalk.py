@@ -1,4 +1,4 @@
-import pythonRobotTest as marty
+import martyPython as marty
 import random, time
 
 # initialise the robot

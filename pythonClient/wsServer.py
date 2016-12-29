@@ -4,7 +4,7 @@ PORT = 5996              # Arbitrary non-privileged port
 
 
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-import pythonRobotTest as marty
+import martyPython as marty
 import json
 from time import sleep
 import RPi.GPIO as GPIO

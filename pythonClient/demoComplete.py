@@ -1,4 +1,4 @@
-import pythonRobotTest as marty
+import martyPython as marty
 
 # initialise the robot
 marty.hello()
