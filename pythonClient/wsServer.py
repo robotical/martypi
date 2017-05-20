@@ -31,7 +31,7 @@ class SimpleEcho(WebSocket):
                 response = json.dumps(rcv)
                 self.sendMessage(unicode(response))
             if rcv["cmd"] == "walk":
-                marty.walk(rcv["numsteps"], rcv["steplength"], rcv["turn"], rcv["movetime"])
+                marty.walk(rcv["numsteps"], rcv["steplength"], rcv["turn"], rcv["movetime"]/100)
             if rcv["cmd"] == "kick":
                 if rcv["leg"] == "left":
                     marty.kickLeft()
@@ -73,7 +73,7 @@ class SimpleEcho(WebSocket):
                 self.sendMessage(self.data)
             if rcv["cmd"] == "moveHip":
                 amount = max(min(int(rcv["amount"]), 40),0)
-                movetime = max(min(int(rcv["movetime"]), 30),5)
+                movetime = max(min(int(rcv["movetime"]/100), 30),5)
                 if rcv["direction"] == "forward":
                     amount = -1*amount
                 marty.moveHip(rcv["leg"], amount, movetime)
