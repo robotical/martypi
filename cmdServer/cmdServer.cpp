@@ -217,6 +217,27 @@ int runCommand(martyrobot& robot, vector<uint8_t> data) {
     break;
   }
 
+  case CMD_MOVEJOINTS: {
+    if (data.size() < 5){ return -1;}
+    // jointID, sign, angle, movetime in centiseconds
+    uint8_t jointID = data[1];
+    if (jointID > R_NUMJOINTS){ return -1;}
+    float angle = data[3];
+    if (data[2] == CMD_NEGATIVE){ angle *= -1;}
+    float movetime = (float)data[4]/10;
+
+    tSetpoints.clear();
+    tSetpoints.push_back(tline);
+    tline[1+ jointID] = angle;
+    tline[0] = movetime;
+    tSetpoints.push_back(tline);
+
+    interpTrajectory(tSetpoints, tInterp, 0.05);
+    runTrajectory(robot, tInterp);
+    break;
+
+  }
+
   case CMD_EYES: {
     if (data.size() < 3) return -1;
     float angle = data[2];
@@ -228,7 +249,7 @@ int runCommand(martyrobot& robot, vector<uint8_t> data) {
       if (data[3] == CMD_NEGATIVE)
         angle *= -1;
 #ifdef R_EYER
-      printf("settinng second eye to %.2f\n", angle);
+      printf("setting second eye to %.2f\n", angle);
       robot.setServo(R_EYER, angle);
 #endif
     }

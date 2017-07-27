@@ -35,6 +35,18 @@ encoding = {
   "negative": 1
 }
 
+jointID = {
+    "left hip": 0,
+    "left twist": 1,
+    "left knee": 2,
+    "right hip": 3,
+    "right twist": 4,
+    "right knee": 5,
+    "left arm": 6,
+    "right arm": 7,
+    "eyes": 8
+}
+
 def init_socket(host, port=DEF_PORT):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_address = (host, port)
@@ -132,6 +144,22 @@ def moveHip(leg, amount, movetime=20):
     amount = min(abs(int(amount)), 100)
     sendCmd(cmds["movehip"], [leg, sign, amount, movetime])
     return True
+
+def moveJoint(joint, amount, movetime):
+    if type(amount) != int and type(amount) != float:
+        print "Error: moveHip needs to be sent a number"
+        return False    
+    if (amount < 0):
+        sign = encoding["negative"]
+    else:
+        sign = encoding["positive"]
+    amount = min(abs(int(amount)), 100)
+    if not joint in jointID:
+        print "Error: Joint ", joint, " is not in the dictionary"
+        return False
+    sendCmd(cmds["movejoints"], [jointID[joint], sign, amount, movetime])
+    return True
+
 
 def moveLeftHip(amount):
     return moveHip(encoding["left"], amount)

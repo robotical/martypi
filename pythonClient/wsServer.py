@@ -79,6 +79,13 @@ class SimpleEcho(WebSocket):
                 marty.moveHip(rcv["leg"], amount, movetime)
                 sleep(float(movetime)/10)
                 self.sendMessage(self.data)
+            if rcv["cmd"] == "moveJoint":
+                joint = rcv["joint"]
+                angle = max(min(int(rcv["angle"]), 100),-100)
+                movetime = max(min(int(rcv["movetime"]/100), 30),2)
+                marty.moveJoint(joint, angle, movetime)
+                self.sendMessage(self.data)
+
 
         except:
             print 'no id received'
